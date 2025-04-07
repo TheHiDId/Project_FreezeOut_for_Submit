@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.freezeout.web.user.model.dao.UserMapper">
+	<select id="getUserByUsername"
+			parameterType="string"
+			resultType="com.freezeout.web.user.model.dto.UserDTO">
+		SELECT
+			USERNAME,
+			PASSWORD,
+			NICKNAME,
+			REALNAME,
+			EMAIL
+		FROM
+			FO_USER
+		WHERE
+			USERNAME = #{username}
+	</select>
+	
+	<select id="getUserByNickname"
+			parameterType="string"
+			resultType="com.freezeout.web.user.model.dto.UserDTO">
+		SELECT
+			USERNAME,
+			PASSWORD,
+			NICKNAME,
+			REALNAME,
+			EMAIL
+		FROM
+			FO_USER
+		WHERE
+			NICKNAME = #{nickname}
+	</select>
+	
+	<select id="getUserByEmail"
+			parameterType="string"
+			resultType="com.freezeout.web.user.model.dto.UserDTO">
+		SELECT
+			USERNAME,
+			PASSWORD,
+			NICKNAME,
+			REALNAME,
+			EMAIL
+		FROM
+			FO_USER
+		WHERE
+			EMAIL = #{email}
+	</select>
+
+	<insert id="signUp"
+			parameterType="com.freezeout.web.user.model.vo.UserVO">
+		INSERT INTO
+			FO_USER
+			(
+				USERNAME,
+				PASSWORD,
+				NICKNAME,
+				REALNAME,
+				EMAIL,
+				ROLE
+			)
+		VALUES
+			(
+				#{username},
+				#{password},
+				#{nickname},
+				#{realname},
+				#{email},
+				#{role}
+			)
+	</insert>
+</mapper>
